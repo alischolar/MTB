@@ -22,8 +22,8 @@ from aiogram.types import (
 from google import genai
 from google.genai import types
 import database as db
-BOT_TOKEN = os.getenv("8890889822:AAGLGLOh5qsvbumkMR8xwe537mawUj-BdG4")
-GOOGLE_API_KEY = os.getenv("AQ.Ab8RN6J9C9RPbdCdq2fdI-AeBbN23z1doEHU9I9N5v_fuCG5ww")
+BOT_TOKEN = "8890889822:AAGLGLOh5qsvbumkMR8xwe537mawUj-BdG4"
+GOOGLE_API_KEY = "AQ.Ab8RN6J9C9RPbdCdq2fdI-AeBbN23z1doEHU9I9N5v_fuCG5ww"
 
 
 REQUIRED_CHANNELS = ["@harward_go"]  
