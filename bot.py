@@ -443,13 +443,22 @@ async def settings(callback: CallbackQuery):
     await callback.answer()
 
 # ---------- Asosiy Ishga Tushirish Funksiyasi ----------
+from aiohttp import web
+
+async def handle(request):
+    return web.Response(text="Bot ishlayapti!")
+
+async def start_web_server():
+    app = web.Application()
+    app.router.add_get("/", handle)
+    runner = web.AppRunner(app)
+    await runner.setup()
+    port = int(os.environ.get("PORT", 8080))
+    site = web.TCPSite(runner, "0.0.0.0", port)
+    await site.start()
+
 async def main():
-    db.init_db()    
-    
-    # Eskidan qolgan webhook va to'planib qolgan xabarlarni o'chiramiz:
-    await bot.delete_webhook(drop_pending_updates=True)
-    
-    print("Bot ishga tushdi...")
+    await start_web_server()
     await dp.start_polling(bot)
 
 if __name__ == "__main__":
