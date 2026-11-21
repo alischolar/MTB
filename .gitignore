@@ -1,0 +1,6 @@
+.env
+.venv/
+__pycache__/
+*.py[cod]
+database.db
+The College Panda SAT Math.pdf

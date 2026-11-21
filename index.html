@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maktab Ta'lim - Video Darslar</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; padding: 20px; background-color: #f4f7f6; }
+        .header { display: flex; justify-content: space-between; align-items: center; background: #0088cc; color: white; padding: 15px; border-radius: 10px; }
+        .lang-btn { background: white; color: #0088cc; border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer; font-weight: bold; }
+        .video-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-top: 20px; }
+        .video-card { background: white; padding: 15px; border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        iframe { width: 100%; height: 200px; border-radius: 8px; border: none; }
+        h3 { margin-top: 10px; font-size: 16px; color: #333; }
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <h2 id="page-title">Fizika - Video Darslar</h2>
+    <button class="lang-btn" onclick="toggleLanguage()" id="lang-btn">🇷🇺 Русский</button>
+</div>
+
+<div class="video-grid" id="video-container">
+    </div>
+
+<script>
+    // YouTube video darsliklar bazasi
+    const lessonsData = {
+        uz: [
+            { id: 1, title: "1-Dars: Nyutonning birinchi qonuni", url: "https://www.youtube.com/embed/dQw4w9WgXcQ" },
+            { id: 2, title: "2-Dars: Tezlik va tezlanish", url: "https://www.youtube.com/embed/dQw4w9WgXcQ" }
+            // Yana 12 ta videoni shu ko'rinishda qo'shasiz
+        ],
+        ru: [
+            { id: 1, title: "Урок 1: Первый закон Ньютона", url: "https://www.youtube.com/embed/dQw4w9WgXcQ" },
+            { id: 2, title: "Урок 2: Скорость и ускорение", url: "https://www.youtube.com/embed/dQw4w9WgXcQ" }
+        ]
+    };
+
+    let currentLang = 'uz';
+
+    function renderVideos() {
+        const container = document.getElementById('video-container');
+        container.innerHTML = '';
+        
+        lessonsData[currentLang].forEach(video => {
+            const card = document.createElement('div');
+            card.className = 'video-card';
+            card.innerHTML = `
+                <iframe src="${video.url}" allowfullscreen></iframe>
+                <h3>${video.title}</h3>
+            `;
+            container.appendChild(card);
+        });
+    }
+
+    function toggleLanguage() {
+        if (currentLang === 'uz') {
+            currentLang = 'ru';
+            document.getElementById('lang-btn').innerText = '🇺🇿 O\'zbekcha';
+            document.getElementById('page-title').innerText = 'Физика - Видеоуроки';
+        } else {
+            currentLang = 'uz';
+            document.getElementById('lang-btn').innerText = '🇷🇺 Русский';
+            document.getElementById('page-title').innerText = 'Fizika - Video Darslar';
+        }
+        renderVideos();
+    }
+
+    // Sahifa yuklanganda videolarni chiqarish
+    renderVideos();
+</script>
+
+</body>
+</html>
